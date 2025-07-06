@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ content_meta.code }} {{ content_meta.title }} &mdash; {{ super() }}{% endblock title %}
+{% block description %}{{ page_description }}{% endblock description %}
+{% block keywords %}{{ content_meta.code }} {{ content_meta.title }}, {{ content_meta.code }}, {{ content_meta.title }}, {{ content_meta.code }} status code, {{ content_meta.code }} http status code, {{ super() }}{% endblock keywords %}
+{% block content %}
+<section class="content one">
+<span class="subtitle">{{ http_codes_collection[content_meta["set"]|string]["title"] | safe }}</span>
+<h1>{{ content_meta.code }} {{ content_meta.title }}</h1>
+{{ content|safe }}
+</section>
+{% endblock content %}

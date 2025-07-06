@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HTTP Status Codes &mdash; httpstatuscodes.org{% endblock title %}</title>
+    <meta name="description" content="{% block description %}HTTP Status Code directory, with definitions, details and helpful code references.{% endblock description %}">
+    <meta name="keywords" content="{% block keywords %}http status, http status codes, status codes, http codes{% endblock keywords %}">
+    <link type="text/plain" rel="author" href="{{ url_for('home.humans') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+{% block content %}
+{% endblock content %}
+</body>
+</html>

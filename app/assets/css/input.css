@@ -1,0 +1,70 @@
+@import "./pygments.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-slate-900 text-slate-400 text-lg
+}
+
+
+a {
+    @apply text-slate-300 font-medium hover:text-sky-400
+}
+
+code {
+    @apply font-mono bg-slate-800 p-1 rounded
+}
+
+h1 {
+    @apply text-4xl font-semibold
+}
+
+hr {
+    @apply border-cyan-900
+}
+
+hr + ul {
+    @apply text-xs pt-4
+}
+
+p {
+    @apply my-4
+}
+
+pre {
+    @apply font-mono text-base bg-slate-800 px-3 py-2 rounded overflow-auto
+}
+
+.codes {
+    @apply mx-auto px-8 mb-10 md:px-2 lg:px-20 2xl:px-64
+}
+
+.content {
+    @apply container mx-auto px-10 mb-8 md:px-2 lg:px-20 2xl:px-64
+}
+
+.content a {
+    @apply underline underline-offset-4 decoration-dotted decoration-sky-400 hover:no-underline
+}
+
+.one {
+    @apply mt-16 md:mt-24 lg:mt-32
+}
+
+.number {
+    @apply font-medium text-green-400
+}
+
+.set {
+    @apply font-medium text-xl
+}
+
+.share {
+    @apply flex flex-col md:flex-row container mx-auto px-8 my-8 md:px-2 lg:px-20 2xl:px-64 md:space-x-6
+}
+
+.subtitle {
+    @apply text-2xl font-mono text-slate-500
+}

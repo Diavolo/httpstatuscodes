@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="content one">
+{{ headline|safe }}
+</section>
+<ul class="share">
+    <li><a href="https://twitter.com/intent/tweet?hashtags=httpstatuscodes&text=Helpful%20HTTP%20Status%20Code%20reference%20site&url=https%3A%2F%2Fhttpstatuscodes.org">&commat; Share on Twitter</a></li>
+    <li><a href="https://github.com/huarcaya/httpstatuscodes.org">&bigstar; Star on GitHub</a></li>
+    <li><a href="https://gitlab.com/huarcaya/httpstatuscodes.org">&bigstar; Star on GitLab</a></li>
+</ul>
+<section class="container codes">
+    <ul>
+    {% for x in http_codes_collection.values() %}
+        <li class="mt-4">
+            <span class="set">{{x["title"]|safe}}</span>
+            <ul class="mt-1">
+            {% for y in x["codes"] %}
+                <li>
+                    <a class="space-x-2" href="{{url_for('home.get_code', code=y['code'])}}">
+                        <span class="number">{{y["code"]}}</span> <span>{{y["title"]}}</span>
+                    </a>
+                    <a class="text-xs" href="{{url_for('api.get_api_code', code=y['code'])}}">[json]</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+</section>
+{% endblock content %}
