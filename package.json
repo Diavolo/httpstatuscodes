@@ -1,5 +1,5 @@
 {
-  "name": "httpstatuscodes.org",
+  "name": "httpstatuscodes",
   "version": "2.0.0",
   "description": "HTTP Status Codes",
   "main": "index.js",
@@ -12,7 +12,7 @@
     "prod": "npx tailwindcss -i ./app/assets/css/input.css -o ./app/static/css/style.css  --minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["http status", "http status codes", "http status code", "status codes", "status code"],
   "author": "Gustavo Adolfo Huarcaya Delgado <diavolo@gahd.net>",
   "license": "MIT",
   "devDependencies": {
