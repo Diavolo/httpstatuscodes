@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "httpstatuscodes"
+version = "2.0.0"
+description = "HTTP Status Codes"
+authors = ["Gustavo Adolfo Huarcaya Delgado <diavolo@gahd.net>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "httpstatuscodes"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.1.1"
+frozen-flask = "^1.0.2"
+gunicorn = "^23.0.0"
+markdown = "^3.8.2"
+pygments = "^2.19.2"
+pyyaml = "^6.0.2"
+
+[tool.poetry.group.dev.dependencies]
+frozen-flask = "^1.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
