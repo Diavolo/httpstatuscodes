@@ -3,9 +3,56 @@
 {% block description %}{{ page_description }}{% endblock description %}
 {% block keywords %}{{ content_meta.code }} {{ content_meta.title }}, {{ content_meta.code }}, {{ content_meta.title }}, {{ content_meta.code }} status code, {{ content_meta.code }} http status code, {{ super() }}{% endblock keywords %}
 {% block content %}
+{% include "navbar.html" %}
 <section class="content one">
-<span class="subtitle">{{ http_codes_collection[content_meta["set"]|string]["title"] | safe }}</span>
-<h1>{{ content_meta.code }} {{ content_meta.title }}</h1>
-{{ content|safe }}
+    <section class="subtitle">
+        {{ http_codes_collection[content_meta["set"]|string]["svg"] | safe }}
+        <span>{{ http_codes_collection[content_meta["set"]|string]["title"] | safe }}</span>
+    </section>
+    <div class="detail">
+        <main>
+            <h1 class="{{ http_codes_collection[content_meta['set']|string]['class'] }}">
+                <span>{{ content_meta.code }} {{ content_meta.title }}</span>
+                <a class="text-xs" href="{{url_for('api.get_api_code', code=content_meta['code'])}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.312 9H5.688L3.5 15h1.607l.446-1.226h1.894L7.893 15H9.5Zm-1.394 3.774L6.5 11.18l.582 1.595ZM14.744 9h-3.5v6h1.5v-2h2a1.473 1.473 0 0 0 1.5-1.5v-1a1.473 1.473 0 0 0-1.5-1.5m0 2.5h-2v-1h2ZM18 9h1.5v6H18z"/><path fill="currentColor" d="M22 6v12H2V6zm0-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+                </a>
+            </h1>
+            {{ content|safe }}
+            <br>
+            {% if content_meta.references %}
+            <h3>{{ content_meta.code }} Code References</h3>
+            <ul class="text-sm">
+                {% for language, constant in content_meta.references.items() %}
+                <li>
+                {{ language }} <code>{{ constant }}</code>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </main>
+        <aside>
+            <ul class="text-sm">
+                {% for items in http_codes_collection.values() %}
+                    {% if content_meta.set == items["codes"][0]["set"] %}
+                    <li>
+                        <h4 class="row">
+                            {{items["svg"]|safe}}
+                            <span>{{items["title"]|safe}}</span>
+                        </h4>
+                        <ul class="mt-1">
+                        {% for http_code in items["codes"] %}
+                            <li>
+                                <a class="space-x-2" href="{{url_for('home.get_code', code=http_code['code'])}}">
+                                    <span>{{http_code["code"]}}</span> <span>{{http_code["title"]}}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </aside>
+    </div>
 </section>
 {% endblock content %}
