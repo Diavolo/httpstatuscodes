@@ -1,6 +1,5 @@
 ---
 title: Internal Server Error
-layout: page.jade
 ---
 
 # 500 Internal Server Error

@@ -1,6 +1,5 @@
 ---
 title: Page Not Found
-layout: page.jade
 ---
 
 # 404 Not Found
