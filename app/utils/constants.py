@@ -1,16 +1,23 @@
 from pathlib import Path
 
-
+# Paths
 APP_DIR_PATH = Path(__file__).resolve().parent.parent
 CONTENTS_DIR_PATH = APP_DIR_PATH.joinpath("contents")
 CODES_DIR_PATH = CONTENTS_DIR_PATH.joinpath("codes")
 
+# Messages
 DIR_NOT_FOUND_MSG = "Directory not found."
 CODE_NOT_FOUND_MSG = "HTTP Status Code not found."
 FILE_ERROR_READING_MSG = "Error reading {} file."
 
+# Regex
 MD_HEADER_META_REGEX = "^-{3}(\n#.*)*(\n.*:.*)+(\n#.*)*\n-{3}"
 
+# Templates
+NOT_FOUND_HTML_TEMPLATE = "404.html"
+SERVER_ERROR_HTML_TEMPLATE = "500.html"
+
+# HTTP Status Codes
 HTTP_STATUS_CODES_CATEGORIES: dict[str, dict[str:str]] = {
     "1": {
         "title": "1&times;&times; Informational",
