@@ -11,16 +11,18 @@
 {% include "navbar.html" %}
 <section class="container codes">
     <ul>
-    {% for x in http_codes_collection.values() %}
+    {% for items in http_codes_collection.values() %}
         <li class="mt-4">
-            <span class="set">{{x["title"]|safe}}</span>
+            <h2 class="category">
+                <span class="{{items['class']}}">{{items["svg"]|safe}}</span>
+                <span class="{{items['class']}}">{{items["title"]|safe}}</span>
+            </h2>
             <ul class="mt-1">
-            {% for y in x["codes"] %}
-                <li>
-                    <a class="space-x-2" href="{{url_for('home.get_code', code=y['code'])}}">
-                        <span class="number">{{y["code"]}}</span> <span>{{y["title"]}}</span>
+            {% for http_code in items["codes"] %}
+                <li class="code-link">
+                    <a class="space-x-2" href="{{url_for('home.get_code', code=http_code['code'])}}">
+                        <span class="{{items['class']}}">{{http_code["code"]}}</span> <span>{{http_code["title"]}}</span>
                     </a>
-                    <a class="text-xs" href="{{url_for('api.get_api_code', code=y['code'])}}">[json]</a>
                 </li>
             {% endfor %}
             </ul>
