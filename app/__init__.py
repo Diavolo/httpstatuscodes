@@ -1,9 +1,11 @@
+from http import HTTPStatus
 import os
 
 from flask import Flask, render_template
 
 from app.routes.home import home
 from app.routes.api import api
+from app.utils.constants import NOT_FOUND_HTML_TEMPLATE, SERVER_ERROR_HTML_TEMPLATE
 
 
 def create_app(test_config=None):
@@ -11,7 +13,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         # a default secret that should be overridden by instance config
-        SECRET_KEY='dev'
+        SECRET_KEY="dev"
     )
 
     if test_config is None:
@@ -28,8 +30,16 @@ def create_app(test_config=None):
         pass
 
     @app.errorhandler(404)
-    def not_found_page(error):
-        return render_template('404.html', error_message=error), 404
+    def not_found_error(error):
+        return render_template(
+            NOT_FOUND_HTML_TEMPLATE, error_message=error
+        ), HTTPStatus.NOT_FOUND
+
+    @app.errorhandler(500)
+    def internal_server_error(error):
+        return render_template(
+            SERVER_ERROR_HTML_TEMPLATE, error_message=error
+        ), HTTPStatus.INTERNAL_SERVER_ERROR
 
     app.register_blueprint(api)
     app.register_blueprint(home)
