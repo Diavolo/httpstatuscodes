@@ -1,1 +1,8 @@
-<h1>About</h1>
+{% extends "base.html" %}
+
+{% block content %}
+{% include "navbar.html" %}
+<section class="content page">
+{{ headline|safe }}
+</section>
+{% endblock content %}
