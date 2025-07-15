@@ -4,5 +4,31 @@
 {% include "navbar.html" %}
 <section class="content page">
 {{ headline|safe }}
+
+<h2>Link to HTTP Status Codes</h2>
+
+<a href="{{ url_for('home.index') }}" title="HTTP Status Codes">HTTP Status Codes</a>
+<pre>
+&lt;a href="https://httpstatuscodes.org" title="HTTP Status Codes"&gt;HTTP Status Codes&lt;/a&gt;
+</pre>
+
+<a href="{{ url_for('home.index') }}" title="HTTP Status Codes">
+    <img src="{{ url_for('static', filename='img/88x31.gif') }}" alt="HTTP Status Codes" width="88" height="31">
+</a>
+<pre>
+&lt;a href="https://httpstatuscodes.org" title="HTTP Status Codes"&gt;
+    &lt;img src="https://raw.githubusercontent.com/Diavolo/httpstatuscodes/refs/heads/v2/app/static/img/88x31.gif" alt="HTTP Status Codes" width="88" height="31"&gt;
+&lt;/a&gt;
+</pre>
+
+<a href="{{ url_for('home.index') }}" title="HTTP Status Codes">
+    <img src="{{ url_for('static', filename='img/88x31-color.gif') }}" alt="HTTP Status Codes" width="88" height="31">
+</a>
+<pre>
+&lt;a href="https://httpstatuscodes.org" title="HTTP Status Codes"&gt;
+    &lt;img src="https://raw.githubusercontent.com/Diavolo/httpstatuscodes/refs/heads/v2/app/static/img/88x31-color.gif" alt="HTTP Status Codes" width="88" height="31"&gt;
+&lt;/a&gt;
+</pre>
+
 </section>
 {% endblock content %}
