@@ -1,0 +1,32 @@
+[Unit]
+Description=HTTP Status Code Gunicorn Daemon
+Requires=httpstatuscodes_gunicorn.socket
+After=network.target
+
+[Service]
+User=diavolo
+Group=www-data
+WorkingDirectory=/home/diavolo/.sites/httpstatuscodes.org/httpstatuscodes
+Environment=FLASK_ENV=production
+ExecStart=/home/diavolo/.pyenv/versions/httpstatuscodes.org/bin/gunicorn \
+          --access-logfile - \
+          --error-logfile - \
+          --log-level info \
+          --workers 4 \
+          --worker-class sync \
+          --worker-connections 1000 \
+          --max-requests 1000 \
+          --max-requests-jitter 100 \
+          --timeout 30 \
+          --keep-alive 2 \
+          --bind unix:/run/httpstatuscodes_gunicorn.sock \
+          main:app
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
