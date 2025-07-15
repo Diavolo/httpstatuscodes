@@ -54,12 +54,12 @@ Deploy as a traditional Flask web application:
 
 2. **Run with Gunicorn (production WSGI server):**
    ```bash
-   gunicorn -w 4 -b 0.0.0.0:8000 main:app
+   gunicorn --workers 4 --bind 0.0.0.0:8000 main:app
    ```
 
 3. **Or run with Flask development server:**
    ```bash
-   flask --app app run --host=0.0.0.0 --port=8000
+   flask --app main run --debug
    ```
 
 ### Option 2: Static Site Generation
