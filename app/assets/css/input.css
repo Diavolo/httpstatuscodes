@@ -167,3 +167,8 @@ footer {
 .server-error {
   @apply text-red-500;
 }
+
+/* 88x31 badge styles */
+.b-88x31 {
+  @apply flex items-center justify-center mt-4 lg:fixed lg:bottom-0 lg:left-0 lg:m-4 lg:z-50;
+}
