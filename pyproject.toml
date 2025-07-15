@@ -10,11 +10,12 @@ packages = [{include = "httpstatuscodes"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 flask = "^3.1.1"
-frozen-flask = "^1.0.2"
 gunicorn = "^23.0.0"
 markdown = "^3.8.2"
 pygments = "^2.19.2"
 pyyaml = "^6.0.2"
+sentry-sdk = {extras = ["flask"], version = "^2.32.0"}
+python-dotenv = "^1.1.1"
 
 [tool.poetry.group.dev.dependencies]
 frozen-flask = "^1.0.2"
