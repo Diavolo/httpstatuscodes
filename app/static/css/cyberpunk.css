@@ -1,0 +1,211 @@
+/* Cyberpunk/Synthwave Font Styles */
+
+/* Base font stack for body text */
+body {
+    font-family: 'Share Tech Mono', 'VT323', 'Courier New', monospace;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #00ff41; /* Matrix green */
+    background-color: #0a0a0a; /* Deep black */
+}
+
+/* Headings - Futuristic display fonts */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', 'Audiowide', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff0080; /* Hot pink for synthwave */
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080; /* Neon glow effect */
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-shadow: 0 0 15px #ff0080, 0 0 30px #ff0080, 0 0 45px #ff0080;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #00ffff; /* Cyan for secondary headings */
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #ffff00; /* Yellow for tertiary headings */
+    text-shadow: 0 0 8px #ffff00, 0 0 16px #ffff00;
+}
+
+/* Navigation - Futuristic tech font */
+nav {
+    font-family: 'Chakra Petch', 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Code blocks - Terminal aesthetic */
+code, pre {
+    font-family: 'VT323', 'Share Tech Mono', 'Courier New', monospace;
+    background-color: #1a1a1a;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    text-shadow: 0 0 5px #00ff41;
+}
+
+/* Links - Neon effect */
+a {
+    font-family: 'Share Tech Mono', 'VT323', monospace;
+    color: #00ffff;
+    text-decoration: none;
+    text-shadow: 0 0 5px #00ffff;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #ff0080;
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080;
+    transform: scale(1.05);
+}
+
+/* Status codes - Glowing numbers */
+.number {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: #ff0080;
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080;
+    font-size: 1.2em;
+}
+
+/* Category labels */
+.category {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* Footer - Tech font */
+footer {
+    font-family: 'Share Tech Mono', 'VT323', monospace;
+    color: #888888;
+}
+
+.version {
+    font-family: 'VT323', 'Share Tech Mono', monospace;
+    color: #00ff41;
+}
+
+/* Logo and branding */
+.logo-text {
+    font-family: 'Orbitron', 'Audiowide', sans-serif;
+    font-weight: 900;
+    color: #ff0080;
+    text-shadow: 0 0 15px #ff0080, 0 0 30px #ff0080;
+}
+
+/* Subtitle */
+.subtitle {
+    font-family: 'VT323', 'Share Tech Mono', monospace;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+/* Buttons and interactive elements */
+button, input, select, textarea {
+    font-family: 'Share Tech Mono', 'VT323', monospace;
+    background-color: #1a1a1a;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    text-shadow: 0 0 5px #00ff41;
+}
+
+button:hover, input:hover, select:hover {
+    background-color: #00ff41;
+    color: #000000;
+    text-shadow: none;
+    box-shadow: 0 0 15px #00ff41;
+}
+
+/* Status code categories with cyberpunk colors */
+.informational {
+    color: #00ffff; /* Cyan */
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.success {
+    color: #00ff41; /* Matrix green */
+    text-shadow: 0 0 5px #00ff41;
+}
+
+.redirection {
+    color: #ffff00; /* Yellow */
+    text-shadow: 0 0 5px #ffff00;
+}
+
+.client-error {
+    color: #ff0080; /* Hot pink */
+    text-shadow: 0 0 5px #ff0080;
+}
+
+.server-error {
+    color: #ff0000; /* Red */
+    text-shadow: 0 0 5px #ff0000;
+}
+
+/* Scrollbar styling for cyberpunk aesthetic */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff41;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #00ff41;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff0080;
+    box-shadow: 0 0 15px #ff0080;
+}
+
+/* Selection styling */
+::selection {
+    background-color: #ff0080;
+    color: #000000;
+}
+
+::-moz-selection {
+    background-color: #ff0080;
+    color: #000000;
+}
+
+/* Animation for cyberpunk feel */
+@keyframes neon-pulse {
+    0%, 100% { text-shadow: 0 0 5px currentColor, 0 0 10px currentColor; }
+    50% { text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+h1, .number, .logo-text {
+    animation: neon-pulse 3s ease-in-out infinite;
+}
+
+/* Grid lines effect for background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+}
