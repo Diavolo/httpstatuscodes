@@ -14,30 +14,37 @@ This project is built with:
 
 To build and run this project locally:
 
-1. **Install Python dependencies:**
+1. **Install Python dependencies with Poetry:**
    ```bash
-   pip install -r requirements.txt
+   poetry install
    ```
 
-2. **Install Node.js dependencies:**
+   For production dependencies only:
    ```bash
-   npm install
+   poetry install --only=main
+   ```
+
+2. **Install Node.js dependencies with pnpm:**
+   ```bash
+   pnpm install
    ```
 
 3. **Build CSS assets:**
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 4. **Run the development server:**
    ```bash
-   flask --app app run --debug
+   flask --app main run --debug
    ```
 
-5. **For development with CSS watching:**
+5. **For development with CSS watching (recommended):**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
+
+   This will watch for changes in your CSS files and automatically rebuild them.
 
 ## Deployment Options
 
@@ -49,17 +56,12 @@ Deploy as a traditional Flask web application:
 
 1. **Build production CSS:**
    ```bash
-   npm run prod
+   pnpm run prod
    ```
 
 2. **Run with Gunicorn (production WSGI server):**
    ```bash
    gunicorn --workers 4 --bind 0.0.0.0:8000 main:app
-   ```
-
-3. **Or run with Flask development server:**
-   ```bash
-   flask --app main run --debug
    ```
 
 ### Option 2: Static Site Generation
@@ -68,12 +70,12 @@ Generate a static site for deployment to CDN or static hosting:
 
 1. **Build production CSS:**
    ```bash
-   npm run prod
+   pnpm run prod
    ```
 
 2. **Generate static site:**
    ```bash
-   python freezer.py
+   poetry run python freezer.py
    ```
 
 3. **Deploy the generated `build/` directory** to your static hosting provider (Netlify, Vercel, GitHub Pages, etc.)
