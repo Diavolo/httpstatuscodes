@@ -82,7 +82,7 @@ Generate a static site for deployment to CDN or static hosting:
 
 All contributions are welcome! If you have an idea to improve the website please submit a pull request or [create an issue][1], or provide your thoughts on [open issues][1].
 
-Each status code lives in a Markdown file at [app/contents/codes](app/contents/codes), the easiest way to submit changes is via the GitHub editor. When contributing changes to the status codes please be mindful of the following:
+Each status code lives in a Markdown file at [app/content/codes](app/content/codes), the easiest way to submit changes is via the GitHub editor. When contributing changes to the status codes please be mindful of the following:
 
 * Markdown links should be used as [references instead of inline][2]
 * If an RFC or external document is referenced, make the reference a link

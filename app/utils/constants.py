@@ -2,8 +2,8 @@ from pathlib import Path
 
 # Paths
 APP_DIR_PATH = Path(__file__).resolve().parent.parent
-CONTENTS_DIR_PATH = APP_DIR_PATH.joinpath("contents")
-CODES_DIR_PATH = CONTENTS_DIR_PATH.joinpath("codes")
+CONTENT_DIR_PATH = APP_DIR_PATH.joinpath("content")
+CODES_DIR_NAME = "codes"
 
 # Messages
 DIR_NOT_FOUND_MSG = "Directory not found."
@@ -16,6 +16,9 @@ MD_HEADER_META_REGEX = "^-{3}(\n#.*)*(\n.*:.*)+(\n#.*)*\n-{3}"
 # Templates
 NOT_FOUND_HTML_TEMPLATE = "404.html"
 SERVER_ERROR_HTML_TEMPLATE = "500.html"
+
+SUPPORTED_LANGUAGES = ["en", "es"]
+DEFAULT_LANGUAGE = "en"
 
 # HTTP Status Codes
 HTTP_STATUS_CODES_CATEGORIES: dict[str, dict[str:str]] = {

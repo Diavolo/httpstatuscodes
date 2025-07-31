@@ -20,7 +20,7 @@
             <ul class="mt-1">
             {% for http_code in items["codes"] %}
                 <li class="code-link">
-                    <a class="space-x-2" href="{{url_for('home.get_code', code=http_code['code'])}}">
+                    <a class="space-x-2" href="{{url_for('home.get_code', lang=current_lang, code=http_code['code'])}}">
                         <span class="{{items['class']}}">{{http_code["code"]}}</span> <span>{{http_code["title"]}}</span>
                     </a>
                 </li>

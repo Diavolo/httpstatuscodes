@@ -1,19 +1,24 @@
 from os.path import exists
 from pathlib import Path
+import logging
 
 from markdown import markdown
 import yaml
 
 from app.utils.constants import (
     CODE_NOT_FOUND_MSG,
+    CODES_DIR_NAME,
     CODES_DIR_PATH,
     CONTENTS_DIR_PATH,
+    DEFAULT_LANGUAGE,
     DIR_NOT_FOUND_MSG,
     FILE_ERROR_READING_MSG,
     HTTP_STATUS_CODES_CATEGORIES,
+    SUPPORTED_LANGUAGES,
 )
 from app.utils.md import MD_EXTENSION_CONFIGS
 
+logger = logging.getLogger(__name__)
 
 def get_page_404_content() -> str:
     try:
@@ -72,12 +77,17 @@ def read_file_content(file_path: Path) -> str:
         raise IOError(f"{FILE_ERROR_READING_MSG.format('MD')}: {str(e)}")
 
 
-def read_http_status_files() -> dict[str, dict]:
+def read_http_status_files(lang:str = DEFAULT_LANGUAGE) -> dict[str, dict]:
     http_codes_categories = {
         k: v.copy() for k, v in HTTP_STATUS_CODES_CATEGORIES.items()
     }
 
-    for item in CODES_DIR_PATH.glob("*.md"):
+    if lang not in SUPPORTED_LANGUAGES:
+        lang = DEFAULT_LANGUAGE
+
+    codes_dir_path = CONTENTS_DIR_PATH.joinpath(lang).joinpath(CODES_DIR_NAME)
+
+    for item in codes_dir_path.glob("*.md"):
         if item.is_file():
             try:
                 with open(item, "r", encoding="utf-8") as md_file:
@@ -109,6 +119,7 @@ def read_http_status_files() -> dict[str, dict]:
                 else:
                     http_codes_categories[markdown_header_set_value]["codes"] = [code]
             except:
+                logger.error(f"Error reading {item} file.")
                 continue
 
     return http_codes_categories
