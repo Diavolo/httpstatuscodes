@@ -15,6 +15,7 @@ from app.utils.constants import (
 )
 from app.utils.files import (
     get_error_content,
+    get_version_from_pyproject,
     read_file_content,
     read_http_status_files,
 )
@@ -85,6 +86,7 @@ class ContentService:
                 "current_lang": lang,
                 "default_lang": DEFAULT_LANGUAGE,
                 "supported_languages": SUPPORTED_LANGUAGES,
+                "version": get_version_from_pyproject(),
             }
 
         except IOError as e:
@@ -146,6 +148,7 @@ class ContentService:
             "current_lang": lang,
             "default_lang": DEFAULT_LANGUAGE,
             "supported_languages": SUPPORTED_LANGUAGES,
+            "version": get_version_from_pyproject(),
         }
 
     @staticmethod
@@ -170,7 +173,10 @@ class ContentService:
                 ]
                 license_content = "\n".join(filtered_lines)
 
-            return {"headline": license_content}
+            return {
+                "headline": license_content,
+                "version": get_version_from_pyproject(),
+            }
 
         except IOError as e:
             logger.error("Error reading LICENSE file")

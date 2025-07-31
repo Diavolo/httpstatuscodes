@@ -149,3 +149,31 @@ def read_http_status_files(lang: str = DEFAULT_LANGUAGE) -> dict[str, dict]:
                 continue
 
     return http_codes_categories
+
+
+def get_version_from_pyproject() -> str:
+    """Get the version from the pyproject.toml file.
+
+    Returns:
+        str: The version.
+    """
+    try:
+        project_root = Path(__file__).resolve().parents[2]
+        pyproject_path = project_root.joinpath("pyproject.toml")
+
+        if not pyproject_path.exists():
+            logger.warning("pyproject.toml not found")
+            return "unknown"
+        with open(pyproject_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        for line in content.split("\n"):
+            line = line.strip()
+            if line.startswith("version = "):
+                version = line.split("=", 1)[1].strip().strip('"')
+                return version
+        logger.warning("version not found in pyproject.toml")
+        return "unknown"
+    except Exception as e:
+        logger.error(f"Error getting version from pyproject.toml: {e}")
+        return "unknown"
