@@ -12,6 +12,7 @@ from app.utils.constants import NOT_FOUND_HTML_TEMPLATE, SERVER_ERROR_HTML_TEMPL
 
 load_dotenv()
 
+
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
 
