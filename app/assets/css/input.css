@@ -113,7 +113,11 @@ footer {
 }
 
 .social-icons {
-  @apply flex flex-row gap-4;
+  @apply flex flex-row gap-4 items-center;
+}
+
+.language-icon {
+  @apply flex flex-row items-center;
 }
 
 .subtitle {
