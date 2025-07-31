@@ -8,8 +8,7 @@ import yaml
 from app.utils.constants import (
     CODE_NOT_FOUND_MSG,
     CODES_DIR_NAME,
-    CODES_DIR_PATH,
-    CONTENTS_DIR_PATH,
+    CONTENT_DIR_PATH,
     DEFAULT_LANGUAGE,
     DIR_NOT_FOUND_MSG,
     FILE_ERROR_READING_MSG,
@@ -20,30 +19,23 @@ from app.utils.md import MD_EXTENSION_CONFIGS
 
 logger = logging.getLogger(__name__)
 
-def get_page_404_content() -> str:
+
+def get_error_content(error_type: str) -> str:
+    """Get the content of an error file (e.g. error-404.md).
+
+    Args:
+        error_type (str): The error type.
+
+    Returns:
+        str: The content if it exists, otherwise an empty string.
+    """
     try:
         with open(
-            CONTENTS_DIR_PATH.joinpath("error-404.md"), "r", encoding="utf-8"
-        ) as not_found_md_file:
-            not_found_md_content = not_found_md_file.read()
+            CONTENT_DIR_PATH.joinpath(f"error-{error_type}.md"), "r", encoding="utf-8"
+        ) as error_md_file:
+            error_md_content = error_md_file.read()
             headline = markdown(
-                not_found_md_content.split("---")[2],
-                extension_configs=MD_EXTENSION_CONFIGS,
-            )
-
-        return headline
-    except IOError:
-        return ""
-
-
-def get_page_500_content() -> str:
-    try:
-        with open(
-            CONTENTS_DIR_PATH.joinpath("error-500.md"), "r", encoding="utf-8"
-        ) as internal_server_error_md_file:
-            internal_server_error_md_content = internal_server_error_md_file.read()
-            headline = markdown(
-                internal_server_error_md_content.split("---")[2],
+                error_md_content.split("---")[2],
                 extension_configs=MD_EXTENSION_CONFIGS,
             )
 
@@ -53,20 +45,46 @@ def get_page_500_content() -> str:
 
 
 def validate_content_directory(content_directory: str) -> None:
+    """Validate the content directory.
+
+    Args:
+        content_directory (str): The content directory.
+
+    Raises:
+        IOError: If the content directory does not exist.
+    """
     if not exists(content_directory):
         raise IOError(DIR_NOT_FOUND_MSG)
 
 
 def validate_file_path(file_path: Path) -> None:
+    """Validate the file path.
+
+    Args:
+        file_path (Path): The file path.
+
+    Raises:
+        IOError: If the file path does not exist.
+    """
     if not file_path.is_file():
-        error_content = get_page_404_content()
+        error_content = get_error_content("404")
         print(len(error_content))
         error_content = error_content if error_content != "" else CODE_NOT_FOUND_MSG
         raise IOError(error_content)
 
 
 def read_file_content(file_path: Path) -> str:
-    """Read the content of a file."""
+    """Read the content of a file.
+
+    Args:
+        file_path (Path): The file path.
+
+    Raises:
+        IOError: If the file does not exist.
+
+    Returns:
+        str: The file content.
+    """
 
     validate_file_path(file_path)
 
@@ -77,7 +95,15 @@ def read_file_content(file_path: Path) -> str:
         raise IOError(f"{FILE_ERROR_READING_MSG.format('MD')}: {str(e)}")
 
 
-def read_http_status_files(lang:str = DEFAULT_LANGUAGE) -> dict[str, dict]:
+def read_http_status_files(lang: str = DEFAULT_LANGUAGE) -> dict[str, dict]:
+    """Read the HTTP status files.
+
+    Args:
+        lang (str, optional): The language. Defaults to DEFAULT_LANGUAGE.
+
+    Returns:
+        dict[str, dict]: The HTTP status categories.
+    """
     http_codes_categories = {
         k: v.copy() for k, v in HTTP_STATUS_CODES_CATEGORIES.items()
     }
@@ -85,7 +111,7 @@ def read_http_status_files(lang:str = DEFAULT_LANGUAGE) -> dict[str, dict]:
     if lang not in SUPPORTED_LANGUAGES:
         lang = DEFAULT_LANGUAGE
 
-    codes_dir_path = CONTENTS_DIR_PATH.joinpath(lang).joinpath(CODES_DIR_NAME)
+    codes_dir_path = CONTENT_DIR_PATH.joinpath(lang).joinpath(CODES_DIR_NAME)
 
     for item in codes_dir_path.glob("*.md"):
         if item.is_file():
